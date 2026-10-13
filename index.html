@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Bree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Caveat:wght@500;700&family=Libre+Franklin:wght@400;500;600&display=swap">
+<style>
+/* Layout: a party scrapbook — a big marigold banner up top, then stacked "pages" with taped-in photos and handwritten notes */
+:root{
+  --bg:#fffaf0;
+  --surface:#ffffff;
+  --ink:#1d1b2e;
+  --muted:#5f5b72;
+  --sun:#ffc23d;
+  --pink:#e2367a;
+  --teal:#11807c;
+  --line:#ece4d4;
+  --tape:rgb(255 194 61 / .55);
+  --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --hand:"Caveat", "Bradley Hand", "Comic Sans MS", cursive;
+  --body:"Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#15131f;--surface:#211e30;--ink:#f6f2ea;--muted:#b4aec6;--sun:#ffc23d;--pink:#ff6fa6;--teal:#4cc6bf;--line:#332f45;--tape:rgb(255 194 61 / .35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15131f;--surface:#211e30;--ink:#f6f2ea;--muted:#b4aec6;--sun:#ffc23d;--pink:#ff6fa6;--teal:#4cc6bf;--line:#332f45;--tape:rgb(255 194 61 / .35);color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;padding-inline:16px}
+.wrap{max-width:760px;margin:0 auto;padding-block:24px 72px}
+
+/* banner */
+.banner{background:var(--sun);color:#1d1b2e;border-radius:28px;padding:36px 28px 40px;position:relative;overflow:hidden}
+.banner .kicker{font-family:var(--hand);font-size:28px;font-weight:700;transform:rotate(-3deg);display:inline-block}
+.banner h1{margin:4px 0 0;font-family:var(--display);font-weight:800;font-size:clamp(64px,18vw,148px);line-height:.88;letter-spacing:-.03em}
+.banner h1 span{color:var(--pink);display:block}
+.banner p{margin:20px 0 0;max-width:36ch;font-size:18px;font-weight:500}
+.dots{position:absolute;inset:0;pointer-events:none}
+.dots i{position:absolute;border-radius:50%}
+
+.section{margin-top:64px}
+.section h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,6vw,42px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.section h2 em{font-style:normal;color:var(--pink)}
+.section p{margin:0 0 14px;max-width:62ch}
+.note{font-family:var(--hand);font-size:26px;line-height:1.25;color:var(--teal)}
+
+/* photos */
+.photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.photo{margin:0;background:var(--surface);padding:10px 10px 36px;box-shadow:0 2px 4px rgb(0 0 0 / .1),0 10px 24px rgb(0 0 0 / .08);position:relative;transition:transform .25s}
+.photo:before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:22px;margin-left:-35px;background:var(--tape);transform:rotate(-4deg)}
+.photo:nth-child(1){transform:rotate(-3deg)}.photo:nth-child(2){transform:rotate(1.5deg) translateY(10px)}.photo:nth-child(3){transform:rotate(-1deg)}
+.photo:hover{transform:rotate(0) scale(1.03)}
+.photo .img{aspect-ratio:4/5;max-width:100%;background:repeating-linear-gradient(135deg,var(--line) 0 10px,var(--bg) 10px 20px);display:grid;place-items:center;color:var(--muted);font-size:13px;text-align:center;padding:8px}
+.photo img,.photo video{aspect-ratio:4/5;width:100%;max-width:100%;object-fit:cover;object-position:center top;display:block;background:var(--line)}
+.photo figcaption{position:absolute;left:0;right:0;bottom:4px;text-align:center;font-family:var(--hand);font-size:24px;font-weight:700}
+@media (max-width:520px){.photos{grid-template-columns:repeat(2,minmax(0,1fr))}.photos .photo:nth-child(3){grid-column:1/-1;width:60%;justify-self:center}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;font-variant-numeric:tabular-nums}
+.stat{border:2px solid var(--ink);border-radius:18px;padding:18px;background:var(--surface)}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:44px;line-height:1;color:var(--teal)}
+.stat:nth-child(2) b{color:var(--pink)}.stat:nth-child(3) b{color:var(--pink)}
+.stat span{display:block;margin-top:8px;color:var(--muted);font-size:15px}
+@media (max-width:420px){.stats{grid-template-columns:1fr}}
+
+/* letter */
+.letter{background:var(--surface);border-radius:20px;padding:26px;border:1px solid var(--line)}
+.letter .sig{font-family:var(--hand);font-size:34px;font-weight:700;color:var(--pink);margin-top:8px}
+
+/* candles */
+.cakebox{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 16px}
+.cake{display:flex;justify-content:center;gap:20px;padding:30px 0 0}
+.candle{width:14px;height:64px;border-radius:3px;position:relative;background:repeating-linear-gradient(160deg,var(--pink) 0 8px,#fff 8px 14px)}
+.candle:nth-child(even){background:repeating-linear-gradient(160deg,var(--teal) 0 8px,#fff 8px 14px)}
+.flame{position:absolute;left:50%;top:-24px;width:14px;height:22px;margin-left:-7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#fff6c8,#f3b13b 55%,#d9531e);opacity:0;transform:scale(.3);transition:opacity .3s,transform .3s}
+.lit .flame{opacity:1;transform:scale(1);animation:flick 1.3s ease-in-out infinite alternate}
+@keyframes flick{to{transform:scale(.9) rotate(4deg)}}
+.slab{height:16px;max-width:220px;margin:0 auto;background:var(--sun);border-radius:8px}
+.btn{margin-top:20px;font:700 16px var(--display);color:#1d1b2e;background:var(--sun);border:2px solid var(--ink);border-radius:999px;padding:12px 26px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.wish{font-family:var(--hand);font-size:28px;color:var(--teal);min-height:1.4em;margin-top:12px}
+
+canvas#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+footer{text-align:center;margin-top:64px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){.lit .flame{animation:none}.photo{transition:none}}
+</style>
+</head>
+<body>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header class="banner">
+    <div class="dots" id="dots" aria-hidden="true"></div>
+    <span class="kicker">it's her day!</span>
+    <h1>Happy Birthday <span>Bree!</span></h1>
+    <p>Celebrating Briana: my life partner for more than twenty years, and somehow still putting up with me.</p>
+  </header>
+
+  <section class="section">
+    <h2>How it <em>started</em></h2>
+    <p>We met at church, back when neither of us knew we were meeting a life partner. Twenty-plus years later we've been through growing up, moving on, starting over, and every big moment in between.</p>
+    <p class="note">Some friendships fade. Ours just kept showing up.</p>
+    <div class="photos">
+      <figure class="photo"><img src="photos/back-then.jpg" alt="Bree and Jestin in an early selfie together" style="object-position:center top"><figcaption>back then</figcaption></figure>
+      <figure class="photo"><video src="videos/us-mirror.mp4" autoplay muted loop playsinline aria-label="Bree and Jestin in a mirror video together"></video><figcaption>us, always</figcaption></figure>
+      <figure class="photo"><img src="photos/still-at-it.jpg" alt="Jestin holding Bree in a mirror selfie"><figcaption>still at it</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Bree, <em>by the numbers</em></h2>
+    <div class="stats">
+      <div class="stat"><b>20+</b><span>years of friendship and counting</span></div>
+      <div class="stat"><b>∞</b><span>times she's been right (her count, not mine)</span></div>
+      <div class="stat"><b>100%</b><span>of the time she shows up when it matters</span></div>
+      <div class="stat"><b>0</b><span>plans to stop celebrating her</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>A few <em>real words</em></h2>
+    <div class="letter">
+      <p>Bree, you're one of the few people who has known me through every version of myself, and you've stuck around for all of them. You make people feel seen. You tell the truth even when it's inconvenient. And you're still the first person I want to tell when something big happens.</p>
+      <p>I hope this year brings you rest when you need it, joy you didn't see coming, and people who love you as loudly as you love them.</p>
+      <div class="sig">I love you. Jestin</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Make a <em>wish</em></h2>
+    <div class="cakebox">
+      <div class="cake" id="cake" aria-hidden="true">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <div class="slab"></div>
+      <button class="btn" id="light" type="button">Light the candles</button>
+      <div class="wish" id="wish" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <footer>Here's to twenty more, Bree.</footer>
+</div>
+
+<script>
+(function(){
+  // banner dots
+  var d=document.getElementById('dots'),cols=['#e2367a','#11807c','#ffffff','#1d1b2e'];
+  for(var i=0;i<18;i++){var s=document.createElement('i'),z=6+Math.random()*14;
+    s.style.cssText='width:'+z+'px;height:'+z+'px;background:'+cols[i%4]+';opacity:.55;left:'+(55+Math.random()*44)+'%;top:'+(Math.random()*95)+'%';d.appendChild(s);}
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv=document.getElementById('confetti'),cx=cv.getContext('2d'),parts=[],raf=null;
+  function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+  size();addEventListener('resize',size);
+  function burst(){
+    if(reduce)return;
+    var c=['#e2367a','#11807c','#ffc23d','#7a5cff','#ff8a3d'];
+    for(var i=0;i<160;i++)parts.push({x:innerWidth/2,y:innerHeight*.55,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:Math.random()*6+4,c:c[i%5],a:Math.random()*6,va:(Math.random()-.5)*.3,life:0});
+    if(!raf)tick();
+  }
+  function tick(){
+    cx.clearRect(0,0,innerWidth,innerHeight);
+    parts=parts.filter(function(p){return p.y<innerHeight+40&&p.life<260});
+    parts.forEach(function(p){p.vy+=.32;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;p.life++;
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore();});
+    raf=parts.length?requestAnimationFrame(tick):null;
+  }
+
+  var cake=document.getElementById('cake'),btn=document.getElementById('light'),wish=document.getElementById('wish'),lit=false;
+  btn.addEventListener('click',function(){
+    lit=!lit;
+    cake.querySelectorAll('.candle').forEach(function(el,i){setTimeout(function(){el.classList.toggle('lit',lit)},lit?i*150:0)});
+    btn.textContent=lit?'Blow them out':'Light them again';
+    wish.textContent=lit?'Close your eyes, Bree...':'Wish made. Happy birthday!';
+    if(!lit)burst();
+  });
+})();
+</script>
+</body>
+</html>
